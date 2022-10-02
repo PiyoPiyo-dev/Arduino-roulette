@@ -2,8 +2,10 @@
 <html>
     <head>
         <title>HTML5 Canvas Winning Wheel</title>
-        <link rel="stylesheet" href="main.css" type="text/css" />
-        <script type="text/javascript" src="Winwheel.js"></script>
+        <link rel="stylesheet" href="/static/css/main.css" type="text/css" />
+        <script type="text/javascript" src="/static/js/Winwheel.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     </head>
     <body>
         <div align="center">
@@ -18,22 +20,6 @@
                 </tr>
             </table>
         </div>
-        <script type="text/javascript">
-            <!--
-            $(function() {
-              $("#btn2").click(function() {
-                $("#dl2").dialog({
-                  modal:true,
-                });
-              });
-            });
-            //-->
-            </script>
-            
-            <div id="dl2" style="display:none;">
-              <img src="spin_off.png" alt="">
-            </div>
-            
         <script>
              document.addEventListener('keydown', (event) => {
                 var keyName = event.key;
@@ -42,6 +28,14 @@
                     resetWheel(); 
                     startSpin();
             }});
+        </script>
+        <script>
+            var host = "ws://127.0.0.1:12345";
+            var ws = new WebSocket(host);
+
+            ws.onmessage = function (event) {
+                console.log(event.data);
+                }
         </script>
         <script>
             // Create new wheel object specifying the parameters at creation time.
